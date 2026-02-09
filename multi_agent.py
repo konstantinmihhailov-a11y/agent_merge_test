@@ -2,7 +2,6 @@ import logging
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
-
 from livekit import api
 from livekit.agents import (
     Agent,
@@ -85,13 +84,16 @@ class IntroAgent(Agent):
         # story_agent = StoryAgent(name, location, chat_ctx=self.chat_ctx)
 
         logger.info(
-            "switching to the story agent with the provided user data: %s", context.userdata
+            "switching to the story agent with the provided user data: %s",
+            context.userdata,
         )
         return story_agent
 
 
 class StoryAgent(Agent):
-    def __init__(self, name: str, location: str, *, chat_ctx: ChatContext | None = None) -> None:
+    def __init__(
+        self, name: str, location: str, *, chat_ctx: ChatContext | None = None
+    ) -> None:
         super().__init__(
             instructions=f"{common_instructions}. You should use the user's information in "
             "order to make the story personalized."
@@ -122,11 +124,14 @@ class StoryAgent(Agent):
         # generate a goodbye message and hang up
         # awaiting it will ensure the message is played out before returning
         await self.session.generate_reply(
-            instructions=f"say goodbye to {context.userdata.name}", allow_interruptions=False
+            instructions=f"say goodbye to {context.userdata.name}",
+            allow_interruptions=False,
         )
 
         job_ctx = get_job_context()
-        await job_ctx.api.room.delete_room(api.DeleteRoomRequest(room=job_ctx.room.name))
+        await job_ctx.api.room.delete_room(
+            api.DeleteRoomRequest(room=job_ctx.room.name)
+        )
 
 
 server = AgentServer()

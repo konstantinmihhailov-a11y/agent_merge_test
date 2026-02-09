@@ -1,18 +1,17 @@
 [project]
 name = "agent-merge-test"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "dotenv>=0.9.9",
-    "livekit>=1.0.25",
+  "python-dotenv>=1.0",
+  "livekit-agents[openai,silero,deepgram]~=1.0",
 ]
 
 [dependency-groups]
 dev = [
-    "ruff>=0.15.0",
+  "ruff>=0.15.0",
 ]
+
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
