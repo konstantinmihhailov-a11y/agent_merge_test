@@ -4,9 +4,15 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "dotenv>=0.9.9",
+    "livekit>=1.0.25",
+]
 
 [dependency-groups]
 dev = [
     "ruff>=0.15.0",
 ]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
