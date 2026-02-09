@@ -2,7 +2,6 @@ import logging
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
-
 from livekit import api
 from livekit.agents import (
     Agent,
